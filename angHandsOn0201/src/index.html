@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Angular HandsOn 02-01</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico"> 
+
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Angular HandsOn 02-01</h1>
+    <div class="col">
+      <div class="row-xs-12">
+        <h2>Using JavaScript</h2>
+        <div class="displayWithJS">
+          <button class="btn btn-primary" onclick="displayWithJavaScript()">Get Names</button>
+        </div>
+        <br>
+        <div class="container-fluid" id="showDataWithJavaScript"></div>
+      </div>
+      <hr>
+      <div class="row-xs-12">
+        <h2>Using JQuery</h2>
+        <div class="displayWithJQuery">
+            <button class="btn btn-primary" onclick="displayWithJQuery()">Get Names</button>
+        </div>
+        <br>
+        <div class="container-fluid" id="showDataWithJQuery"></div>
+      </div>
+      <hr>
+      <div class="row-xs-12">
+        <app-root></app-root>
+      </div>
+    </div>
+  </div> 
+
+  <script>
+    const url = 'https://reqres.in/api/users';
+
+    // Common function
+    // Parse and insert data
+    function insertData(data, idTag){
+      textHTML="";
+      for (var key of Object.keys(data.data)) {
+        textHTML += `
+          <div class="row">
+            <div class="mr-5 col-xs-4 float-left">
+                <img src="` + data.data[key].avatar +`" height=60>
+            </div>       
+            <div class="col-xs-6 float-right">
+                <p>`+ data.data[key].first_name + ", " + 
+                      data.data[key].last_name + "<br>" +
+                      data.data[key].email + `</p>
+            </div>
+          </div>
+          <br>
+        `;
+
+      }
+      
+      // insert data
+      var element=document.getElementById(idTag);    
+      element.innerHTML = textHTML;
+    }
+
+    // Retrieve data using JQuery
+    function displayWithJQuery() {
+      $.getJSON(url, function(data){
+        insertData(data, "showDataWithJQuery");
+      });
+    }
+
+    // Retrieve data using JavaScript
+    function displayWithJavaScript(){
+      fetch(url).then(res => res.json()).then(
+        data => {
+          insertData(data, "showDataWithJavaScript");
+        }
+      )
+    }
+
+  </script>
+
+  <script>
+    console.log("--- Using JavaScript ---")
+   // Task-1 
+   // Creating a javascript object variable
+    var obj = {FirstName:"John",
+      LastName:"Stoke",
+      Salary:5000,
+      PermanentStaff:true,
+    };
+    // Display th variable
+    console.log(obj);
+
+    console.log(""); //seperating tasks
+
+    console.log("--- Using JSON parsing ---")
+    // Task-2
+    // Create a JSON text and assign it to JS string
+    data = '{"firstName":"John", "lastName":"Stoke","Salary":5000,"permanentStaff":true}'
+    var obj = JSON.parse(data);
+
+    for (var key of Object.keys(obj)) {
+      console.log(key + ": " + obj[key])
+    }
+
+    console.log("");
+
+    // Task-2.2
+    // Add department to the obj
+    obj["department id"] = 3;
+    obj["department name"] = "payroll";
+
+    for (var key of Object.keys(obj)) {
+      console.log(key + ": " + obj[key])
+    }
+      
+    console.log("");
+
+    // Task-2.3
+    // Add an array to the obj 
+    obj.skill = {"skill1":{"id":1, "value": "HTML"},
+      "skill2":{"id":2, "value": "CSS"},
+      "skill3":{"id":3, "value": "JavaScript"}
+    }
+
+    for (var key of Object.keys(obj)) {
+      if(key!== "skill") console.log(key + ": " + obj[key])
+      else for(var key of Object.keys(obj.skill)){
+        console.log(key + ": " + obj.skill[key].id + ", " +obj.skill[key].value);
+      }
+    }
+
+    console.log("");
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<h2>Using Angular</h2>
+<input type="button" class="btn btn-primary" value="Get Names" (click)="onGetNames()">
+<br>
+<br>
+<div class="container-fluid" *ngFor="let user of users">
+  <div class="row">
+    <div class="mr-5 col-xs-4 float-left">
+        <img src="{{ user.imgUrl }}" height=60>
+    </div>       
+    <div class="col-xs-6 float-right">
+        <p>
+          {{ user.firstName }}, {{ user.lastName }}
+          <br>
+          {{ user.email }}
+        </p>
+    </div>
+  </div>
+  <br>
+</div>
+
