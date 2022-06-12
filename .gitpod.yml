@@ -1,0 +1,3 @@
+tasks:
+- name: Terminal 1
+  command: npm install -g @angular/cli@latest
