@@ -1,0 +1,4 @@
+install angular -  npm install @angular/cli@latest
+install angular-ghpages - npm install -g angular-cli-ghpages
+
+disable Google anlaytics - ng analytics disable --global

@@ -1,0 +1,58 @@
+<p>Hello world</p>
+<p><strong>Favorite Movie:</strong> {{ favoriteMovie }}</p>
+
+<hr>
+
+<!-- Displaying employee details -->
+<h2>Employee Details</h2>
+<p><strong>ID:</strong> {{ emp.id }}</p>
+<p><strong>Name:</strong> {{ emp.name }}</p>
+<p><strong>Salary:</strong> {{ emp.salary }}</p>
+<!-- Display boolean var: permanent -->
+<p *ngIf="emp.permanent===true; else elseBlock"><strong>Permanent:</strong> Yes</p>
+<ng-template #elseBlock><strong>Permanent:</strong> No</ng-template>
+<!-- Display object: deparment -->
+<p><strong>Department id:</strong> {{ emp.department.id }}</p>
+<p><strong>Department name:</strong> {{ emp.department.name }}</p>
+<!-- Display an array: skills -->
+<h3>skills</h3>
+<table>
+  <tr>
+    <th>Skill Id</th>
+    <th>Skill Name</th>
+  </tr>
+  <tr *ngFor="let skill of emp.skills">
+    <td>{{ skill.id }}</td>
+    <td>{{ skill.name }}</td>
+  </tr>
+</table>
+<!-- Display date: Birth Date -->
+<p><strong>Date of Birth: </strong> {{ emp.dob }}</p>
+
+<hr>
+<!-- Using Custom Format -->
+<!-- Displaying employee details -->
+<h2>Employee Details (custom format)</h2>
+<p><strong>ID:</strong> {{ emp.id }}</p>
+<p><strong>Name:</strong> {{ emp.name }}</p>
+<p><strong>Salary:</strong> {{ emp.salary | currency:'INR':'symbol-narrow':'4.2-2' }}</p>
+<!-- Display boolean var: permanent -->
+<p *ngIf="emp.permanent===true; else elseBlock"><strong>Permanent:</strong> Yes</p>
+<ng-template #elseBlock><strong>Permanent:</strong> No</ng-template>
+<!-- Display object: deparment -->
+<p><strong>Department id:</strong> {{ emp.department.id }}</p>
+<p><strong>Department name:</strong> {{ emp.department.name }}</p>
+<!-- Display an array: skills -->
+<h3>skills</h3>
+<table>
+  <tr>
+    <th>Skill Id</th>
+    <th>Skill Name</th>
+  </tr>
+  <tr *ngFor="let skill of emp.skills">
+    <td>{{ skill.id }}</td>
+    <td>{{ skill.name }}</td>
+  </tr>
+</table>
+<!-- Display date: Birth Date -->
+<p><strong>Date of Birth: </strong> {{ emp.dob | date:'MMM dd, yyyy' }}</p>
