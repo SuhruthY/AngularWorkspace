@@ -1,0 +1,19 @@
+<h4>Display value based on button click</h4>
+<p>Simple button click event!!</p>
+<button class="btn btn-primary" (click)="buttonClicked=true" id="clickMe">Click me</button>
+<br><br>
+<p *ngIf="buttonClicked" id="simpleClick">Click me button clicked!</p>
+
+<h4>Increment value in textbox based on button click</h4>
+<p>Model Binding</p>
+<input type="int" value="{{ value }}" id="incValue">
+<button class="btn btn-primary mx-2" (click)="value=value+1" id="add">Add</button>
+
+<br>
+<br>
+
+<h4>Implement quantity selector</h4>
+<p>Quantity Selector</p>
+<button class="btn btn-primary" [disabled]="value2==0" (click)="value2=value2-1" id="minus">-</button>
+<input type="int" value="{{ value2 }}" id="quantity">
+<button class="btn btn-primary" (click)="value2=value2+1" id="plus">+</button>
