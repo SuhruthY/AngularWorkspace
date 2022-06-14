@@ -1,0 +1,67 @@
+<div class="block">
+    <h3>Edit Employee</h3>
+    <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name"><strong>Name</strong></label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+            <span *ngIf="empForm.controls['name'].hasError('required')" class="error">
+                <small>Name is required</small>
+            </span>
+            <span *ngIf="empForm.controls['name'].hasError('minlength')" class="error">
+                <small>Name must be at least have 4 characters long</small>
+            </span>
+            <span *ngIf="empForm.controls['name'].hasError('maxlength')" class="error">
+                <small>Name can only be 20 characters long</small>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="salary"><strong>Salary</strong></label>
+            <input type="int" class="form-control" id="salary" formControlName="salary">
+            <span *ngIf="empForm.controls['salary'].hasError('required')" class="error">
+                <small>Salary is required</small>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="permanent"><strong>Is permanent or not?</strong></label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="permanentTrue" [value]=true formControlName="permanent">
+                <label class="form-check-label" for="permanentTrue">Yes</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="permanentFalse" [value]=false formControlName="permanent">
+                <label class="form-check-label" for="permanentFalse">No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="department"><strong>Department</strong></label>
+            <br>
+            <select class="form-select" id="department" formControlName="department">
+                <option *ngFor="let department of departments"
+                [ngValue]="department"
+                [selected]="department.id === emp.department.id">
+                {{department.name}}
+                </option>
+            </select>   
+        </div>
+        <div class="form-group" formArrayName="skills">
+            <h5><strong>Skills</strong></h5>
+            <button class="btn btn-primary m-2" id="addSkill" (click)="addskill()">Add Skill</button>
+            <div *ngFor="let skill of skills.controls; let i=index">
+              <label [for]="i">skill:
+                <input [id]="i" type="text" [formControlName]="i">
+              </label>
+            </div>
+          </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!empForm.valid">Save</button>      
+    </form>
+</div>
+
+<div class="block">
+    <strong>Employee Model</strong><br>
+    <pre>{{emp | json }}</pre>
+</div>
+
+<div class="block">
+    <strong>Angular Generated Form Model</strong><br>
+    <pre>{{empForm?.['value'] | json}}</pre>
+</div>

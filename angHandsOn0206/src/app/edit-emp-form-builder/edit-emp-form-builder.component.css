@@ -1,0 +1,9 @@
+.block {
+    float:left;
+    width:33%;
+    padding:1em;
+}
+
+.error {
+    color:red;
+}

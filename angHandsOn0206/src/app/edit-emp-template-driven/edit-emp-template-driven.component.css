@@ -1,0 +1,9 @@
+.block {
+    float:left;
+    width:30%;
+    padding:1em;
+}
+
+.help-block {
+    color:red;
+}
